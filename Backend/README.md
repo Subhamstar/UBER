@@ -136,9 +136,10 @@ The request body should be in JSON format and include the following fields:
 
 ## `/captains/register` Endpoint
 
+
 ### Description
 
-Registers a new captain by creating a captain account with the provided information.
+Registers a new captain by creating a captain account with the provided information. using Postman .
 
 ### HTTP Method
 
