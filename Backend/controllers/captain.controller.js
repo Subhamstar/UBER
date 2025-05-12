@@ -25,6 +25,33 @@ module.exports.registerCaptain=async(req,res,next)=>{
         vehicleType:vehicle.vehicleType
     });
     const token=captain.generateAuthToken();
-    res.status(201).json({token,captain});
+    res.status(201).json({token,captain});  
 
+}
+
+module.exports.loginCaptain=async(req,res,next)=>{
+    const errors=validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(422).json({
+            errors:errors.array()
+        });
+    }
+
+    const {email,password}=req.body;
+
+    const captain=await captainModel.findOne({email}).select('+password');
+    if(!captain){
+        return res.status(401).json({
+            message:'Invalid email or password'
+        });
+    }
+    const isMatch=await captain.comparePassword(password);
+    if(!isMatch){
+        return res.status(401).json({
+            message:'Invalid email or password'
+        });
+    }
+    const token=captain.generateAuthToken();
+    res.cookie('token',token);
+    res.status(200).json({token,captain});
 }

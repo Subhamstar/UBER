@@ -13,11 +13,16 @@ router.post('/register', [
     body('vehicle.plate').notEmpty().withMessage('Vehicle plate is required'),
     body('vehicle.capacity').isNumeric().withMessage('Vehicle capacity must be a number'),
     body('vehicle.vehicleType').notEmpty().withMessage('Vehicle type is required'),
-
-
-
 ],
     captainController.registerCaptain
+)
+
+
+router.post('/login', [
+    body('email').isEmail().withMessage('Invalid Email'),
+    body('password').isLength({min: 6}).withMessage('Password must be at least 6 characters long'),
+],
+    captainController.loginCaptain  
 )
 
 mpdule.exports = router;
