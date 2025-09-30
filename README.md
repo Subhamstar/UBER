@@ -47,4 +47,4 @@ A full-stack ride-hailing application inspired by **Uber**, allowing users to bo
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/uber-clone.git
+   git clone https://github.com/Subhamstar/UBER.git
